@@ -27,7 +27,7 @@ const App: React.FC = () => {
   useEffect(() => {
     logEvent("Ondo Connect State Hub V2 online.", "success");
     logEvent("Connection established: Akure Central Hub.", "info");
-    logEvent("AI Core: Initializing DeepSeek + Groq Hybrid Engine.", "info");
+    logEvent("AI Core: Initializing regional intelligence engine.", "info");
   }, [logEvent]);
 
   const handleImpact = (val: number) => {
@@ -95,7 +95,7 @@ const App: React.FC = () => {
                         userAvatar="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop"
                         onLogEvent={logEvent}
                         initialMessages={[
-                          { id: '1', text: "E ku ijoko, Amina! 🌾 I am your AI Farmer Assistant. Powered by Groq + DeepSeek.", sender: 'bot', timestamp: new Date() },
+                          { id: '1', text: "E ku ijoko, Amina! 🌾 I am your AI Farmer Assistant, here to help you grow.", sender: 'bot', timestamp: new Date() },
                           { id: '2', text: "Weather Alert: Heavy rain predicted in Odigbo. Protect your cocoa fermenting today.", sender: 'bot', timestamp: new Date() },
                         ]}
                       />
@@ -114,8 +114,8 @@ const App: React.FC = () => {
                         onImpact={handleImpact}
                         onLogEvent={logEvent}
                         initialMessages={[
-                          { id: '1', text: "Hi Bola! 🌍 Great collections yesterday. Verification logic synced with DeepSeek.", sender: 'bot', timestamp: new Date() },
-                          { id: '2', text: "URGENT HUB ALERT: 50kg PET Waste verified. Groq Vision confirmed materials.", sender: 'bot', timestamp: new Date() },
+                          { id: '1', text: "Hi Bola! 🌍 Great collections yesterday. Your impact has been recorded.", sender: 'bot', timestamp: new Date() },
+                          { id: '2', text: "URGENT HUB ALERT: 50kg PET Waste verified. Your collection is ready for payout.", sender: 'bot', timestamp: new Date() },
                         ]}
                       />
                     )}
@@ -133,15 +133,15 @@ const App: React.FC = () => {
                 </div>
                 <div>
                   <h2 className="text-5xl font-black text-slate-950 tracking-tighter leading-none uppercase italic leading-none">{currentJourneyData.label}</h2>
-                  <p className="text-[12px] text-slate-400 font-black uppercase tracking-[0.6em] mt-5">Groq + DeepSeek Hybrid Engine</p>
+                  <p className="text-[12px] text-slate-400 font-black uppercase tracking-[0.6em] mt-5">Ondo State Intelligence Engine</p>
                 </div>
               </div>
               
               <div className="space-y-12">
                 <p className="text-slate-600 text-3xl font-medium leading-[1.3] tracking-tight">
-                  {activeJourney === 'AMINA' && "Bridging the gap for 14,000+ farmers. Groq Llama-Vision provides instant disease diagnosis, while DeepSeek handles complex Yoruba translation logic."}
+                  {activeJourney === 'AMINA' && "Bridging the gap for 14,000+ farmers. Our vision system provides instant disease diagnosis, while localized logic handles complex Yoruba translation."}
                   {activeJourney === 'CHUKA' && "Digital inclusion for artisans. Fast USSD registration formalizes business nodes instantly, secured by Ondo's decentralized ledger."}
-                  {activeJourney === 'BOLA' && "Turning waste into prosperity. Circular nodes use Groq Vision for material verification and DeepSeek for impact scoring and rewards."}
+                  {activeJourney === 'BOLA' && "Turning waste into prosperity. Circular nodes use computer vision for material verification and smart logic for impact scoring and rewards."}
                   {activeJourney === 'ADMIN' && "The Strategic Nerve Center. Monitoring growth via real-time geospatial analytics and predictive AI risk modeling across all 18 LGAs."}
                 </p>
 
@@ -150,7 +150,7 @@ const App: React.FC = () => {
                     <ShieldCheck className="w-7 h-7 text-emerald-600" /> State-Grade Security
                   </div>
                   <div className="flex items-center gap-5 px-10 py-5 bg-slate-50 rounded-[2.5rem] border border-slate-100 text-xs font-black uppercase tracking-[0.3em] text-slate-950 shadow-sm group-hover:bg-amber-50 group-hover:border-amber-100 transition-all duration-500">
-                    <Sparkles className="w-7 h-7 text-amber-500" /> Groq + DeepSeek Hybrid
+                    <Sparkles className="w-7 h-7 text-amber-500" /> Hybrid AI Infrastructure
                   </div>
                 </div>
               </div>
@@ -190,7 +190,7 @@ const App: React.FC = () => {
                   Accelerating prosperity with Hybrid AI.
                 </p>
                 <p className="text-slate-400 text-xl font-medium leading-relaxed">
-                  Ondo Connect leverages the world's fastest inference (Groq) and smartest reasoning (DeepSeek) to provide a digital economy for every citizen.
+                  Ondo Connect leverages world-class infrastructure and localized intelligence to provide a digital economy for every citizen.
                 </p>
                 <button 
                   onClick={() => setActiveJourney('AMINA')}
@@ -210,7 +210,7 @@ const App: React.FC = () => {
               <div className="w-14 h-14 bg-slate-950 rounded-[1.2rem] flex items-center justify-center text-white font-black text-3xl italic">O</div>
               <div className="space-y-2">
                 <p className="text-base font-black text-slate-950 tracking-tighter uppercase italic">Ondo Connect Ecosystem</p>
-                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.4em] leading-none">Powered by Groq & DeepSeek</p>
+                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.4em] leading-none">Sunshine State Economic OS</p>
               </div>
             </div>
          </div>

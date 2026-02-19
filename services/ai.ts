@@ -28,12 +28,13 @@ export const getSmartResponse = async (
             {
               role: 'system',
               content: `You are the ONDO CONNECT AI Assistant. Context: ${context}. 
-              TONE: Professional, localized to Ondo State, Nigeria. 
+              TONE: Friendly, helpful, and localized to Ondo State, Nigeria.
+              Speak like a supportive local expert.
               TASKS:
               - Diagnose cocoa/cassava issues if a plant image is sent.
               - Verify waste materials if a recycling image is sent.
-              - Mention local areas like Akure, Owo, or Odigbo. 
-              Keep response strictly under 3 sentences.`
+              - Mention local areas like Akure, Owo, or Odigbo naturally.
+              Keep response helpful and under 3 sentences. Avoid sounding overly technical.`
             },
             {
               role: 'user',
@@ -67,9 +68,10 @@ export const getSmartResponse = async (
           {
             role: 'system',
             content: `You are the ONDO CONNECT AI Assistant. Context: ${context}. 
-            Provide concise, localized assistance for Ondo State citizens. 
-            Infuse local Yoruba-English dialect where friendly. 
-            Maintain professional state-backed authority.`
+            Provide warm, localized assistance for Ondo State citizens.
+            Infuse local Yoruba-English dialect (like "E ku ise" or "Well done") where appropriate to be friendly.
+            Be helpful and conversational, not robotic.
+            Maintain a balance between friendly neighbor and helpful professional.`
           },
           { role: 'user', content: query }
         ],
@@ -82,7 +84,7 @@ export const getSmartResponse = async (
     return dsData.choices?.[0]?.message?.content || "Ondo Connect AI is standing by.";
   } catch (error) {
     console.error("AI Service Error:", error);
-    return "The system is currently optimizing regional bandwidth. Please hold while we reconnect.";
+    return "E ku ise! I'm having a little trouble connecting right now, but please try again in a moment. I'm always here to help.";
   }
 };
 

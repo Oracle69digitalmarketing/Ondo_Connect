@@ -75,7 +75,7 @@ const WhatsAppUI: React.FC<WhatsAppUIProps> = ({
       ? "Farmer Amina workflow. Analyzing agricultural data in Ondo. Multilingual mode: ON. Location: Odigbo Cluster." 
       : "Waste collector Bola workflow. Verifying collection and planning routes in Akure Hub Cluster.";
 
-    // Logic split between Groq (Vision) and DeepSeek (Text) handled in service
+    // Logic split between Vision and Text handled in service
     const botText = await getSmartResponse(text, context, img);
 
     setIsTyping(false);
@@ -89,12 +89,12 @@ const WhatsAppUI: React.FC<WhatsAppUIProps> = ({
 
     // Demo Side Effects
     if (journey === 'AMINA' && img) {
-      onLogEvent?.("AI Engine: Potential crop stress detected via Groq Vision.", "alert");
+      onLogEvent?.("AI Engine: Potential crop stress detected via Vision scan.", "alert");
     }
     if (journey === 'BOLA' && img) {
       setShowReward(true);
       onImpact?.(25);
-      onLogEvent?.("Verified: 50kg contribution synced via DeepSeek Logic.", "success");
+      onLogEvent?.("Verified: 50kg contribution synced via impact logic.", "success");
     }
     if (journey === 'BOLA' && (text.toLowerCase().includes('route') || text.toLowerCase().includes('map') || text.toLowerCase().includes('go'))) {
       setShowMap(true);
@@ -138,7 +138,7 @@ const WhatsAppUI: React.FC<WhatsAppUIProps> = ({
               <div className="absolute inset-0 border-2 border-emerald-500 rounded-lg animate-ping"></div>
             </div>
             <div className="text-center">
-              <p className="text-xs font-black text-slate-900 uppercase tracking-widest">Groq Vision AI</p>
+              <p className="text-xs font-black text-slate-900 uppercase tracking-widest">Ondo Vision AI</p>
               <p className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.2em] mt-1">Analyzing Media Markers...</p>
             </div>
           </div>
@@ -211,7 +211,7 @@ const WhatsAppUI: React.FC<WhatsAppUIProps> = ({
               <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce delay-100"></div>
               <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce delay-200"></div>
             </div>
-            <span className="text-[10px] font-black text-emerald-900 uppercase tracking-widest">DeepSeek Processing...</span>
+            <span className="text-[10px] font-black text-emerald-900 uppercase tracking-widest">Processing request...</span>
           </div>
         )}
       </div>
