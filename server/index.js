@@ -17,14 +17,7 @@ app.get('/api/health', (req, res) => {
 
 app.post('/api/ai/groq', async (req, res) => {
   if (!GROQ_API_KEY) {
-    console.log('Simulating Groq response (No API Key)');
-    return res.json({
-      choices: [{
-        message: {
-          content: "I've analyzed the image you sent. It looks like everything is in order at the Akure Hub. Well done on your progress!"
-        }
-      }]
-    });
+    return res.status(500).json({ error: 'GROQ_API_KEY not configured' });
   }
   try {
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -45,23 +38,7 @@ app.post('/api/ai/groq', async (req, res) => {
 
 app.post('/api/ai/deepseek', async (req, res) => {
   if (!DEEPSEEK_API_KEY) {
-    console.log('Simulating DeepSeek response (No API Key)');
-    const query = req.body.messages?.[req.body.messages.length - 1]?.content || "";
-    let mockResponse = "E ku ise! I'm here to help you with your request. Our system is currently processing your data for the Ondo Connect platform.";
-
-    if (query.toLowerCase().includes('hello') || query.toLowerCase().includes('hi')) {
-      mockResponse = "E ku aro! (Good morning!) I am your Ondo Connect assistant. How can I help you today?";
-    } else if (query.toLowerCase().includes('weather')) {
-      mockResponse = "The weather in Akure is currently clear, perfect for outdoor activities. Stay hydrated!";
-    }
-
-    return res.json({
-      choices: [{
-        message: {
-          content: mockResponse
-        }
-      }]
-    });
+    return res.status(500).json({ error: 'DEEPSEEK_API_KEY not configured' });
   }
   try {
     const response = await fetch('https://api.deepseek.com/chat/completions', {
