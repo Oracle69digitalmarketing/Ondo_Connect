@@ -11,6 +11,7 @@ We are building the "Operating System" for regional prosperity. By integrating A
 ## 🏗️ Technical Architecture
 The platform leverages a **Hybrid AI Strategy** to ensure maximum performance and localized relevance:
 
+- **Express Backend Proxy**: A secure Node.js backend to handle API requests and protect sensitive keys.
 - **Groq Llama-3.2 Vision**: High-speed multimodal inference for real-time pest detection and waste verification.
 - **DeepSeek Reasoning**: Advanced logic for localized translation, impact scoring, and business recommendations.
 - **WhatsApp/USSD Simulation**: Familiar interfaces for maximum inclusivity among farmers and artisans.
