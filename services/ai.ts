@@ -5,33 +5,21 @@
  * Optimized for Ondo Connect's localized economic OS.
  */
 
-// Defensive access to environment variables to prevent "process is not defined" errors in some environments
-const safeGetEnv = (key: string): string | undefined => {
-  try {
-    return import.meta.env[key] as string | undefined;
-  } catch {
-    return undefined;
-  }
-};
-
-const VITE_API_KEY = safeGetEnv('VITE_API_KEY') || '';
-const VITE_GROQ_API_KEY = safeGetEnv('VITE_GROQ_API_KEY') || VITE_API_KEY;
-const VITE_DEEPSEEK_API_KEY = safeGetEnv('VITE_DEEPSEEK_API_KEY') || VITE_API_KEY;
-
 export const getSmartResponse = async (
   query: string, 
   context: string, 
   imageBase64?: string
 ): Promise<string> => {
   try {
-    // Vision tasks (Crop analysis, Waste verification) use Groq's high-speed inference
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+
+    // Vision tasks (Crop analysis, Waste verification) use Groq's high-speed inference via local proxy
     if (imageBase64) {
       const cleanData = imageBase64.includes(',') ? imageBase64.split(',')[1] : imageBase64;
       
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      const response = await fetch(`${BACKEND_URL}/api/ai/groq`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${VITE_GROQ_API_KEY}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -67,11 +55,10 @@ export const getSmartResponse = async (
       return data.choices?.[0]?.message?.content || "Ondo Connect AI has processed your media request.";
     }
 
-    // Reasoning and Localized logic use DeepSeek
-    const dsResponse = await fetch('https://api.deepseek.com/chat/completions', {
+    // Reasoning and Localized logic use DeepSeek via local proxy
+    const dsResponse = await fetch(`${BACKEND_URL}/api/ai/deepseek`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${VITE_DEEPSEEK_API_KEY}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
