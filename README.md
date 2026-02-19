@@ -66,6 +66,21 @@ The platform leverages a **Hybrid AI Strategy** to ensure maximum performance an
 
 ---
 
+## 🌐 Deployment
+
+### Backend
+The Express backend (`server/index.js`) can be hosted on platforms like:
+- **Render** / **Railway**: Recommended for easiest setup.
+- **Heroku**: Standard PaaS choice.
+- **DigitalOcean App Platform**: Robust scaling.
+
+### Frontend
+The Vite frontend can be hosted on **Vercel**, **Netlify**, or along with the backend on the platforms above.
+
+Ensure you set the `VITE_BACKEND_URL` environment variable on your frontend host to point to your deployed backend.
+
+---
+
 ## 🌍 Impact Metrics
 - **Job Creation**: Tracking every new artisan registration.
 - **Circular Economy**: Live tally of waste recovered (KG).
