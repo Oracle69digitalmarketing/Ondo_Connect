@@ -6,17 +6,17 @@
  */
 
 // Defensive access to environment variables to prevent "process is not defined" errors in some environments
-const safeGetEnv = (key: string): string => {
+const safeGetEnv = (key: string): string | undefined => {
   try {
-    return (process.env[key] as string) || '';
+    return import.meta.env[key] as string | undefined;
   } catch {
-    return '';
+    return undefined;
   }
 };
 
-const API_KEY = safeGetEnv('API_KEY');
-const GROQ_API_KEY = safeGetEnv('GROQ_API_KEY') || API_KEY;
-const DEEPSEEK_API_KEY = safeGetEnv('DEEPSEEK_API_KEY') || API_KEY;
+const VITE_API_KEY = safeGetEnv('VITE_API_KEY') || '';
+const VITE_GROQ_API_KEY = safeGetEnv('VITE_GROQ_API_KEY') || VITE_API_KEY;
+const VITE_DEEPSEEK_API_KEY = safeGetEnv('VITE_DEEPSEEK_API_KEY') || VITE_API_KEY;
 
 export const getSmartResponse = async (
   query: string, 
@@ -31,7 +31,7 @@ export const getSmartResponse = async (
       const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${GROQ_API_KEY}`,
+          'Authorization': `Bearer ${VITE_GROQ_API_KEY}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -71,7 +71,7 @@ export const getSmartResponse = async (
     const dsResponse = await fetch('https://api.deepseek.com/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
+        'Authorization': `Bearer ${VITE_DEEPSEEK_API_KEY}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
