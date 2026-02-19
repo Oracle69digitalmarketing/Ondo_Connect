@@ -11,6 +11,7 @@ We are building the "Operating System" for regional prosperity. By integrating A
 ## 🏗️ Technical Architecture
 The platform leverages a **Hybrid AI Strategy** to ensure maximum performance and localized relevance:
 
+- **Express Backend Proxy**: A secure Node.js backend to handle API requests and protect sensitive keys.
 - **Groq Llama-3.2 Vision**: High-speed multimodal inference for real-time pest detection and waste verification.
 - **DeepSeek Reasoning**: Advanced logic for localized translation, impact scoring, and business recommendations.
 - **WhatsApp/USSD Simulation**: Familiar interfaces for maximum inclusivity among farmers and artisans.
@@ -62,6 +63,21 @@ The platform leverages a **Hybrid AI Strategy** to ensure maximum performance an
    - Navigate through the three user journeys using the bottom selector grid.
    - Use the **Command Center** button in the header to view the aggregate state data.
    - Upload images in the WhatsApp view to trigger the **Groq Vision** analysis.
+
+---
+
+## 🌐 Deployment
+
+### Backend
+The Express backend (`server/index.js`) can be hosted on platforms like:
+- **Render** / **Railway**: Recommended for easiest setup.
+- **Heroku**: Standard PaaS choice.
+- **DigitalOcean App Platform**: Robust scaling.
+
+### Frontend
+The Vite frontend can be hosted on **Vercel**, **Netlify**, or along with the backend on the platforms above.
+
+Ensure you set the `VITE_BACKEND_URL` environment variable on your frontend host to point to your deployed backend.
 
 ---
 
