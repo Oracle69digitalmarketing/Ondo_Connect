@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ondo_connect
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  auth-service:
+    build: ./microservices/auth
+    ports:
+      - "3002:3002"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/ondo_connect
+      - REDIS_URL=redis://redis:6379
+      - PORT=3002
+
+  agri-service:
+    build: ./microservices/agri
+    ports:
+      - "3003:3003"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/ondo_connect
+      - PORT=3003
+
+  market-service:
+    build: ./microservices/market
+    ports:
+      - "3004:3000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/ondo_connect
+      - PORT=3000
+
+  service-service:
+    build: ./microservices/service
+    ports:
+      - "3005:3000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/ondo_connect
+      - PORT=3000
+
+  circular-service:
+    build: ./microservices/circular
+    ports:
+      - "3006:8000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/ondo_connect
+      - PORT=8000
